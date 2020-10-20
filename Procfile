@@ -1,0 +1,1 @@
+web: java -jar cookstarter-order-service/target/cookstarter-order-service-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev --server.port=$PORT $JAVA_OPTS
