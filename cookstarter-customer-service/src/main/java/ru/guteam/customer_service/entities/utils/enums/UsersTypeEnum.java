@@ -5,7 +5,7 @@ public enum UsersTypeEnum {
 
     private String code;
 
-    private UsersTypeEnum(String code) {
+    UsersTypeEnum(String code) {
         this.code = code;
     }
 

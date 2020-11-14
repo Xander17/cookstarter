@@ -1,0 +1,171 @@
+
+### restaurant
+
+POST https://cookstarter-restaurant-service.herokuapp.com/restaurant/add
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+{
+  "name": "some restaurant",
+  "description": "this is just restaurant"
+}
+
+###
+
+GET http://localhost:8081/restaurant/getByName/lol
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+###
+GET http://localhost:8081/restaurant/getAll
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+###
+POST http://localhost:8081/restaurant/update
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+{
+  "id": 1,
+  "name": "first",
+  "description": "this is super restaurant europe",
+  "pictureId": 123
+}
+
+###
+GET http://localhost:8081/restaurant/delete/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+### menu
+
+POST https://cookstarter-restaurant-service.herokuapp.com/menu/add
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+{
+  "dishes": [
+    {
+      "name": "shaurma",
+      "price": 0.50,
+      "description": "eda",
+      "pictureId": 321,
+      "restaurantId": 3
+    },
+    {
+      "name": "hot dog",
+      "price": 0.98,
+      "description": "delicious",
+      "pictureId": 345,
+      "restaurantId": 3
+    }
+  ]
+}
+
+###
+
+GET http://localhost:8081/menu/get/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+
+### dish
+
+
+POST http://localhost:8081/dish/add
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+{
+  "name": "borsch",
+  "price": 0.99,
+  "description": "soup",
+  "pictureId": 123,
+  "restaurantId": 1
+}
+
+###
+POST http://localhost:8081/dish/update
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+{
+  "name": "borsch",
+  "price": 1000,
+  "description": "super soup",
+  "pictureId": 8,
+  "restaurantId": 1
+}
+
+###
+
+GET http://localhost:8081/dish/delete
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+{
+  "name": "borsch",
+  "price": 1000,
+  "description": "super soup",
+  "pictureId": 8,
+  "restaurantId": 1
+}
+
+###
+POST https://cookstarter-restaurant-service.herokuapp.com/contact/add
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+{
+  "address": "butovo",
+  "phone": "11111111",
+  "location": "Moscow",
+  "mail": "poest'@vkusno.ru",
+  "website": "site.ru",
+  "restaurantId": 3
+}
+
+###
+POST http://localhost:8081/contact/update/
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+{
+  "address": "sochi",
+  "phone": "12345674353",
+  "location": "univers",
+  "mail": "mail@mail.ru",
+  "website": "web.ru",
+  "restaurantId": 1
+}
+
+###
+
+GET http://localhost:8081/contact/get/2
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+###
+GET http://localhost:8081/contact/delete/1
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow
+Content-Type: application/json
+
+
+
+
+

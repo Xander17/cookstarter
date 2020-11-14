@@ -1,0 +1,69 @@
+<div class="col-md-12">
+    <br/>
+    <h4 style="color: #24305E">Обновление блюда/напитка</h4>
+    <hr style="color: #24305E; background-color: #24305E"/>
+    <form name="updateDishForm" novalidate>
+        <div class="form-row">
+            <div class="col-md-6">
+                <label for="dishName">Название блюда/напитка: </label>
+                <input type="text" class="form-control" placeholder="" name="dishName"
+                       id="dishName" ng-model="dish.name" required>
+                <span style="color:red" ng-show="updateDishForm.dishName.$invalid">
+                        <span ng-show="updateDishForm.dishName.$error.required">
+                            Поле обязательное для заполнения
+                        </span>
+                    </span><br>
+
+                <label for="price">Цена:</label>
+                <input type="text" class="form-control" placeholder="" name="dishPrice"
+                       id="price" ng-model="dish.price" required>
+                <span style="color:red" ng-show="updateDishForm.dishPrice.$invalid">
+                        <span ng-show="updateDishForm.dishPrice.$error.required">
+                            Поле обязательное для заполнения</span>
+                </span><br>
+            </div>
+            <div class="col-md-6">
+                <label for="description">Описание:</label>
+                <textarea class="form-control" name="dishDescription"
+                          id="description" rows="4" ng-model="dish.description" required></textarea>
+                <span style="color:red" ng-show="updateDishForm.dishDescription.$invalid">
+                        <span ng-show="updateDishForm.dishDescription.$error.required">
+                            Поле обязательное для заполнения</span>
+                </span>
+            </div>
+        </div>
+    </form>
+    <div class="col-md-3" style="padding-left: 0;">
+        <button style="background-color: #F8E9A1; color: #24305E;"
+                ng-click="editImgDish()" ng-show=!isUploadImj>
+            {{textEdit}}&nbsp;&nbsp;<i class="fa fa-picture-o" aria-hidden="true"></i>
+        </button>
+    </div>
+    <form enctype="multipart/form-data" name="dishImgForm" ng-show="editImgD">
+        <div class="form-row">
+            <div class="col" ng-show=!isUploadImj>
+                <br>
+                <label for="files">Загрузить изображение:</label>
+                <input type="file" name="file" file-input="files" id="files"
+                       placeholder="Название файла"/>
+                <button type="submit"  ng-click="uploadFile()">Загрузить файл</button>
+            </div>
+            <div class="col" ng-show=isUploadImj>
+                <li ng-repeat="file in files" style="list-style-type: none">
+                    Файл&nbsp;&nbsp;{{file.name}}&nbsp;&nbsp;загружен</li>
+            </div>
+        </div>
+    </form>
+    <hr style="color: #24305E; background-color: #24305E"/><br>
+    <!--    <button class="btn text-white" style="background-color: #374785"-->
+    <!--        ng-disabled="updateDishForm.dishName.$invalid ||-->
+    <!--        updateDishForm.dishPrice.$invalid ||-->
+    <!--        updateDishForm.dishDescription.$invalid "-->
+    <!--        ng-click="updateDish(dish)">Обновить</button>-->
+
+    <a class="btn text-white" style="background-color: #374785"
+       ng-disabled="updateDishForm.dishName.$invalid ||
+        updateDishForm.dishPrice.$invalid ||
+        updateDishForm.dishDescription.$invalid "
+       ng-click="updateDish(dish)" href="#/menu">Обновить</a>
+</div>

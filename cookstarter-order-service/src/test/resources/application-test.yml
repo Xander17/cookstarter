@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:db
+    username: sa
+    password: password
+    driver-class-name: org.h2.Driver
+  jpa:
+    show-sql: false
+
+app:
+  jwt:
+    secret-key: topsecretkey123rieubherotuh3498th398gh395g8h598gh4g8gidufghdifughi43gg4334t3h4gi34uhgi35uhgi35ughi45ugho98dhf98bhg

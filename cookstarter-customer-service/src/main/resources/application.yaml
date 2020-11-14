@@ -1,0 +1,24 @@
+server:
+  port: 8186
+  servlet:
+    context-path: /
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        temp:
+          use_jdbc_metadata_defaults: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=users
+    username: postgres
+    password: admin
+  jackson:
+    serialization:
+      indent_output: true
+
+jwt:
+  secret: topsecretkey123rieubherotuh3498th398gh395g8h598gh4g8gidufghdifughi43gg4334t3h4gi34uhgi35uhgi35ughi45ugho98dhf98bhg
+

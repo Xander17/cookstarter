@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import ru.guteam.cookstarter.api.enums.OrderStatus;
 
 import javax.validation.Valid;
@@ -29,7 +30,7 @@ public class OrderDto {
 
     private OrderStatus status;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss.SSSZ")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private OffsetDateTime dateCreated;
 
     @Valid

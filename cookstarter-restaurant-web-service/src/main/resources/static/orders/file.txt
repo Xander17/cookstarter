@@ -1,0 +1,40 @@
+[
+    {
+        "id": 22,
+        "customerId": 42,
+        "restaurantId": 24,
+        "status": "SAVED",
+        "dateCreated": "04-10-2020 13:23:29.614+0300",
+        "dishes": {
+            "1": {
+                "id": 64,
+                "price": 0.99,
+                "quantity": 5
+            },
+            "2": {
+                "id": 65,
+                "price": 1.99,
+                "quantity": 3
+            }
+        }
+    },
+    {
+        "id": 23,
+        "customerId": 42,
+        "restaurantId": 24,
+        "status": "SAVED",
+        "dateCreated": "04-10-2020 13:27:20.316+0300",
+        "dishes": {
+            "1": {
+                "id": 66,
+                "price": 0.99,
+                "quantity": 5
+            },
+            "2": {
+                "id": 67,
+                "price": 1.99,
+                "quantity": 3
+            }
+        }
+    }
+]

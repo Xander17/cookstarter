@@ -103,10 +103,14 @@ public class OrderService {
     }
 
     @CheckIdIsNotNull
-    @Transactional
     public void deleteItem(Long id) {
-        getItemByIdOrThrowException(id);
+        OrderItem item = getItemByIdOrThrowException(id);
         orderItemRepository.deleteById(id);
+        orderRepository.findById(item.getOrder().getId()).ifPresent(entity -> {
+            if (entity.getDishes().isEmpty()) {
+                orderRepository.delete(entity);
+            }
+        });
     }
 
     private OrderItem getItemByIdOrThrowException(Long id) {

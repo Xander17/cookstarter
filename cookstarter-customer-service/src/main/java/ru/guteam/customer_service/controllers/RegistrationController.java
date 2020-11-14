@@ -1,5 +1,8 @@
 package ru.guteam.customer_service.controllers;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
@@ -13,7 +16,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import ru.guteam.customer_service.entities.utils.SystemCustomer;
 import ru.guteam.customer_service.entities.utils.SystemRestaurant;
-import ru.guteam.customer_service.entities.utils.validation.rest.ValidationErrorDTO;
+import ru.guteam.customer_service.entities.utils.validation.ValidationErrorDTO;
 import ru.guteam.customer_service.services.CustomersService;
 import ru.guteam.customer_service.services.UsersService;
 
@@ -25,6 +28,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/reg")
 @AllArgsConstructor
+@Api("Set of endpoints for registration")
 public class RegistrationController {
     private final UsersService usersService;
     private final CustomersService customersService;
@@ -36,34 +40,30 @@ public class RegistrationController {
         dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
     }
 
+    @ApiOperation("Returns HttpStatus of trying registration procedure for restaurants. Inside the object of SystemRestaurant type is data about it.")
     @PostMapping(value = "/restaurant", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> restaurantRegistration(@RequestBody SystemRestaurant systemRestaurant) {
-        // обсудить, по идее эта проверка дб отдельным запросом
+    public ResponseEntity<?> restaurantRegistration(@RequestBody @ApiParam("Cannot be empty") @Valid SystemRestaurant systemRestaurant) {
         String username = systemRestaurant.getUsername();
         if (usersService.existsByUsername(username)) {
-            log.info("Невозможно зарегистрировать. Ресторан с логином: " + username + " уже сущесвует");
-            return new ResponseEntity<>("User with username: [" + username + "] is already exist", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Ресторан с логином: " + username + " уже существует", HttpStatus.CONFLICT);
         }
         usersService.saveRestaurant(systemRestaurant);
-        logSuccess(username, systemRestaurant.getPassword());
-        return new ResponseEntity<>(systemRestaurant, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @ApiOperation("Returns HttpStatus of trying registration procedure for customers. Inside the object of SystemCustomer type is data about it.")
     @PostMapping(value = "/customer", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> customerRegistration(@RequestBody @Valid SystemCustomer systemCustomer) {
+    public ResponseEntity<?> customerRegistration(@RequestBody @ApiParam("Cannot be empty") @Valid SystemCustomer systemCustomer) {
         String username = systemCustomer.getUsername();
         if (usersService.existsByUsername(username)) {
-            log.info("Невозможно зарегистрировать. Клиент с логином: " + username + " уже сущесвует");
-            return new ResponseEntity<>("User with phone number: [" + username + "] is already exist", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("Клиент с логином: " + username + " уже существует", HttpStatus.CONFLICT);
+        }
+        String email = systemCustomer.getEmail();
+        if (customersService.existsByEmail(email)) {
+            return new ResponseEntity<>("Клиент с адресом: " + email + " уже существует", HttpStatus.CONFLICT);
         }
         customersService.saveBySystemCustomer(systemCustomer);
-        logSuccess(username, systemCustomer.getPass1());
-        return new ResponseEntity<>(systemCustomer, HttpStatus.OK);
-    }
-
-    private void logSuccess(String username, String pass) {
-        log.info("Пользователь с логином: " + username +
-                " и паролем: " + pass + " зарегистрирован");
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

@@ -1,0 +1,55 @@
+<div class="col-md-12"><br>
+    <h4 style="color: #24305E">Обновление карточки ресторана</h4>
+    <hr style="color: #24305E; background-color: #24305E"/>
+    <form name="restaurantForm" novalidate>
+        <div class="form-group">
+            <div class="col-md-6">
+                <label for="restaurantName">Название ресторана:</label>
+                <input type="text" class="form-control" required placeholder=""
+                       id="restaurantName" ng-model="restaurant.name" name="restaurantName">
+                <span style="color:red" ng-show="restaurantForm.restaurantName.$invalid">
+                        <span ng-show="restaurantForm.restaurantName.$error.required">
+                            Поле обязательное для заполнения
+                        </span>
+                </span>
+            </div>
+            <div class="col-md-6">
+                <label for="description">Описание:</label>
+                <textarea class="form-control" name="description" required
+                          id="description" rows="3" ng-model="restaurant.description"></textarea>
+                <span style="color:red" ng-show="restaurantForm.description.$invalid">
+                        <span ng-show="restaurantForm.description.$error.required">
+                            Поле обязательное для заполнения
+                        </span>
+                </span>
+            </div>
+        </div>
+    </form>
+    <div class="col-md-3">
+        <button style="background-color: #F8E9A1; color: #24305E;"
+                ng-click="editImgRestaurant()" ng-show=!isUploadImj>
+            {{textEdit}}&nbsp;&nbsp;<i class="fa fa-picture-o" aria-hidden="true"></i>
+        </button>
+    </div>
+
+        <form method="post" enctype="multipart/form-data" ng-show="editImgR">
+            <div class="form-row">
+                <div class="col" ng-show=!isUploadImj>
+                    <br>
+                    <label for="files">Загрузить изображение:</label>
+                    <input type="file" name="file" file-input="files" id="files"
+                           placeholder="Название файла"/>
+                    <button type="submit"  ng-click="uploadFile()">Загрузить файл</button>
+                </div>
+                <div class="col" ng-show=isUploadImj>
+                    <li ng-repeat="file in files" style="list-style-type: none">
+                        Файл&nbsp;&nbsp;{{file.name}}&nbsp;&nbsp;загружен</li>
+                </div>
+            </div>
+        </form>
+    <hr style="color: #24305E; background-color: #24305E"/><br>
+    <button class="btn text-white" style="background-color: #374785"
+        ng-click="updateRestaurant(restaurant)"
+        ng-disabled="restaurantForm.restaurantName.$invalid ||
+               restaurantForm.description.$invalid">Обновить</button>
+</div>

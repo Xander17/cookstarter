@@ -1,6 +1,7 @@
 package ru.guteam.customer_service.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -72,7 +73,7 @@ public class UsersService implements UserDetailsService {
         user.setCustomer(customer);
         user.setUsername(systemRestaurant.getUsername());
         user.setPassword(passwordEncoder.encode(systemRestaurant.getPassword()));
-        user.setRole(rolesService.findByName(systemRestaurant.getRole()));
+        user.setRole(rolesService.findByName(systemRestaurant.getRole().toString()));
         user.setEnable(true);
         return usersRepository.save(user);
     }
@@ -81,7 +82,7 @@ public class UsersService implements UserDetailsService {
         User user = new User();
         user.setUserType(UsersTypeEnum.CUSTOMER);
         user.setUsername(systemCustomer.getUsername());
-        user.setPassword(passwordEncoder.encode(systemCustomer.getPass1()));
+        user.setPassword(passwordEncoder.encode(systemCustomer.getPassword()));
         user.setRole(rolesService.findByName("CUSTOMER"));
         user.setEnable(true);
         return user;
@@ -90,5 +91,6 @@ public class UsersService implements UserDetailsService {
     public boolean existsByUsername(String username) {
         return usersRepository.existsByUsername(username);
     }
+
 
 }

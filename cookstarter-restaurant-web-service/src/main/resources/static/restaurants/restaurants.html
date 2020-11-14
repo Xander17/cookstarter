@@ -1,0 +1,78 @@
+<div class="col-md-12">
+    <br>
+    <div class="row">
+        <div class="col-md-10">
+            <h4 style="color: #24305E;">Рестораны</h4>
+        </div>
+        <div class="col-md-2" ng-show="fileLength === 0">
+            <div style="text-align: right">
+                <a class="btn text-white" style="background-color: #374785"
+                   href="#/restaurant-form">Добавить</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <hr style="color: #24305E; background-color: #24305E;"/>
+            <div class="col-md-12" ng-show="fileLength === 0">
+                <h3>Нет данных</h3>
+            </div>
+            <table class="table table-bordered" ng-show="fileLength !== 0">
+                <thead></thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="row no-gutters position-relative"
+                             style="background-color: #A8D0E6; color: #24305E">
+                            <div class="col-md-4 mb-md-0 p-md-4">
+    <img ng-src="https://picture-service.herokuapp.com/picture/restaurant/get/{{restaurant.pictureId}}{{token}}{{num}}"
+                                     class="w-100" alt="...">
+                            </div>
+                            <div class="col-md-8 p-4 pl-md-0">
+                                <h5 class="mt-0">{{restaurant.name}}</h5>
+                                <p>{{restaurant.description}}</p>
+                                <div ng-show="contactsLength !== 0">
+                                    <p>Адрес:&nbsp;&nbsp;{{contacts.address}}<br/>
+                                        Телефон:&nbsp;&nbsp;{{contacts.phone}}<br/>
+                                        Email:&nbsp;&nbsp;{{contacts.mail}}<br/>
+                                        Вебсайт:&nbsp;&nbsp;{{contacts.website}}<br/>
+                                        Location:&nbsp;&nbsp;{{contacts.location}}</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; flex-direction: column;  padding-bottom: 20px;">
+                                <div style="display: inline-flex; padding-left: 20px;">
+                                    <div style="padding-right: 10px;">
+                                        <a  class="text-white" ng-click="editRestaurant(restaurant)"
+                                            href="#/updateRestaurant-form">Изменить ресторан</a>
+                                    </div>
+                                    <div  style="padding-right: 10px;">
+                                        <a  style="color:#F76C6C;" ng-click="deleteRestaurant(restaurant)"
+                                            href="#">Удалить ресторан</a>
+                                    </div>
+                                    <div style="padding-right: 10px;">
+                                        <a class="text-white" href="#/menu">Посмотреть меню</a>
+                                    </div>
+                                </div>
+                                <div style="display: inline-flex; padding-left: 20px;">
+                                    <div ng-show="contactsLength === 0" style="padding-right: 10px;">
+                                        <a  style="color:#F8E9A1;" href="#/contact-form">Добавить контакты</a>
+                                    </div>
+                                    <div ng-show="contactsLength !== 0" style="padding-right: 10px;">
+                                        <a style="color:#F8E9A1;" ng-click="editContact(contacts)"
+                                           href="#/updateContact-form">Изменить контакты</a>
+                                    </div>
+                                    <div ng-show="contactsLength !== 0">
+                                        <a style="color: #F76C6C;" ng-click="deleteContact()"
+                                           href="#">Удалить контакты</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            <hr style="color: #24305E; background-color: #24305E"/>
+        </div>
+    </div>
+</div>

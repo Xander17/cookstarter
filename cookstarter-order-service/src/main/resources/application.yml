@@ -3,6 +3,4 @@ server:
     context-path: /
 
 app:
-  customer-service:
-    path:
-      jwt-check: /check
+  auth-type: Bearer

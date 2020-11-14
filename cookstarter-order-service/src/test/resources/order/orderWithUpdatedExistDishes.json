@@ -1,0 +1,14 @@
+{
+  "customerId": 42,
+  "restaurantId": 24,
+  "dishes": {
+    "1": {
+      "price": 0.99,
+      "quantity": 6
+    },
+    "2": {
+      "price": 1.99,
+      "quantity": 10
+    }
+  }
+}
