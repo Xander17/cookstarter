@@ -30,11 +30,11 @@ public class StatusHandler {
             case PAID:
                 log.info(String.format("Устанавливается статус %s заказу id=%s", status.name(), id));
                 if (order.getStatus() != OrderStatus.SAVED) {
-//                    throw new OrderProcessingException("Статус PAID можно установить только заказу со статусом SAVED");
+                    throw new OrderProcessingException("Статус PAID можно установить только заказу со статусом SAVED");
                 }
                 orderService.setStatus(id, status);
                 orderBoardService.sendOrder(OrderBoardDto.builder()
-                        .username(customerService.getUsername(order.getCustomerId()))
+                        .userName(customerService.getUsername(order.getCustomerId()))
                         .dishes(order.getDishes().entrySet().stream()
                                 .map(entry -> OrderBoardDto.Dish.builder()
                                         .name(restaurantService.getDishName(entry.getKey()))

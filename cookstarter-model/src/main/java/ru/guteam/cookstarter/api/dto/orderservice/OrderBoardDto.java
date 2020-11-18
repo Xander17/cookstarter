@@ -14,13 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderBoardDto {
-    private String username;
+    private String userName;
     private List<Dish> dishes;
 
     @Override
     public String toString() {
         return "{\n" +
-                "   username='" + username + "',\n" +
+                "   username='" + userName + "',\n" +
                 "   dishes=" + dishes + "\n" +
                 '}';
     }
