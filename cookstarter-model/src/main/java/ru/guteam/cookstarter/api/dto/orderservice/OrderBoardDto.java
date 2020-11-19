@@ -22,10 +22,10 @@ public class OrderBoardDto {
     @Override
     public String toString() {
         return "{\n" +
-                "   orderId='" + orderId + "',\n" +
-                "   restaurantId='" + restaurantId + "',\n" +
-                "   username='" + userName + "',\n" +
-                "   dishes=" + dishes + "\n" +
+                "\torderId='" + orderId + "',\n" +
+                "\trestaurantId='" + restaurantId + "',\n" +
+                "\tusername='" + userName + "',\n" +
+                "\tdishes=" + dishes + "\n" +
                 '}';
     }
 
@@ -42,10 +42,10 @@ public class OrderBoardDto {
         @Override
         public String toString() {
             return "{\n" +
-                    "       name='" + name + "',\n" +
-                    "       quantity=" + quantity + ",\n" +
-                    "       price=" + price + "\n" +
-                    "   }";
+                    "\t\tname='" + name + "',\n" +
+                    "\t\tquantity=" + quantity + ",\n" +
+                    "\t\tprice=" + price + "\n" +
+                    "\t}";
         }
     }
 }
