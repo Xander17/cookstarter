@@ -24,7 +24,7 @@ public class OrderBoardDto {
         return "{\n" +
                 "\torderId='" + orderId + "',\n" +
                 "\trestaurantId='" + restaurantId + "',\n" +
-                "\tusername='" + userName + "',\n" +
+                "\tuserName='" + userName + "',\n" +
                 "\tdishes=" + dishes + "\n" +
                 '}';
     }
