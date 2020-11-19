@@ -24,7 +24,7 @@ app:
     add: /add
   customer-service:
     path: https://cookstarter-users-service.herokuapp.com
-    get-info: /
+    get-info: /users/info/%s
   restaurant-service:
     path: https://cookstarter-restaurant-service.herokuapp.com
     get-dish: /dish/get/%s

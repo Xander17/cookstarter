@@ -36,7 +36,7 @@ public class StatusHandler {
                 orderBoardService.sendOrder(OrderBoardDto.builder()
                         .orderId(id)
                         .restaurantId(order.getRestaurantId())
-                        .userName(customerService.getUsername(order.getCustomerId()))
+                        .userName(customerService.getUserInfo(order.getCustomerId()).getFullName())
                         .dishes(order.getDishes().entrySet().stream()
                                 .map(entry -> OrderBoardDto.Dish.builder()
                                         .name(restaurantService.getDishName(entry.getKey()))
