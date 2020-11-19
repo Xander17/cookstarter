@@ -34,6 +34,8 @@ public class StatusHandler {
                 }
                 orderService.setStatus(id, status);
                 orderBoardService.sendOrder(OrderBoardDto.builder()
+                        .orderId(id)
+                        .restaurantId(order.getRestaurantId())
                         .userName(customerService.getUsername(order.getCustomerId()))
                         .dishes(order.getDishes().entrySet().stream()
                                 .map(entry -> OrderBoardDto.Dish.builder()

@@ -14,12 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderBoardDto {
+    private Long orderId;
     private String userName;
+    private Long restaurantId;
     private List<Dish> dishes;
 
     @Override
     public String toString() {
         return "{\n" +
+                "   orderId='" + orderId + "',\n" +
+                "   restaurantId='" + restaurantId + "',\n" +
                 "   username='" + userName + "',\n" +
                 "   dishes=" + dishes + "\n" +
                 '}';
