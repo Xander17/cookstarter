@@ -7,10 +7,7 @@ import ru.guteam.cookstarter.api.dto.orderservice.OrderBoardDto;
 import ru.guteam.cookstarter.api.dto.orderservice.OrderDto;
 import ru.guteam.cookstarter.api.enums.OrderStatus;
 import ru.guteam.cookstarter.orderservice.exception.OrderProcessingException;
-import ru.guteam.cookstarter.orderservice.service.CustomerService;
-import ru.guteam.cookstarter.orderservice.service.OrderBoardService;
-import ru.guteam.cookstarter.orderservice.service.OrderService;
-import ru.guteam.cookstarter.orderservice.service.RestaurantService;
+import ru.guteam.cookstarter.orderservice.service.*;
 
 import java.util.stream.Collectors;
 
@@ -23,6 +20,7 @@ public class StatusHandler {
     private final OrderBoardService orderBoardService;
     private final CustomerService customerService;
     private final RestaurantService restaurantService;
+    private final JwtService jwtService;
 
     public void handle(Long id, OrderStatus status) {
         OrderDto order = orderService.getById(id);
@@ -32,19 +30,21 @@ public class StatusHandler {
                 if (order.getStatus() != OrderStatus.SAVED) {
                     throw new OrderProcessingException("Статус PAID можно установить только заказу со статусом SAVED");
                 }
+                String token = jwtService.generateInnerToken();
                 orderService.setStatus(id, status);
                 orderBoardService.sendOrder(OrderBoardDto.builder()
                         .orderId(id)
                         .restaurantId(order.getRestaurantId())
-                        .userName(customerService.getUserInfo(order.getCustomerId()).getFullName())
+                        .userName(customerService.getUserInfo(order.getCustomerId(), token).getFullName())
                         .dishes(order.getDishes().entrySet().stream()
                                 .map(entry -> OrderBoardDto.Dish.builder()
-                                        .name(restaurantService.getDishName(entry.getKey()))
+                                        .name(restaurantService.getDishName(entry.getKey(), token))
                                         .price(entry.getValue().getPrice())
                                         .quantity(entry.getValue().getQuantity())
                                         .build())
                                 .collect(Collectors.toList()))
-                        .build());
+                        .build(),
+                        token);
             default:
         }
     }

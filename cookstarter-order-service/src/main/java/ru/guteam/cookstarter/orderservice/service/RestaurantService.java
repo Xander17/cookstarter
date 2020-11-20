@@ -24,10 +24,10 @@ public class RestaurantService {
     @Value("${app.restaurant-service.path}${app.restaurant-service.get-dish}")
     private String getDishPath;
 
-    public String getDishName(Long id) {
+    public String getDishName(Long id,String token) {
         log.info("Запрос блюда с id=" + id);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.put("Authorization", List.of("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow"));
+        httpHeaders.put("Authorization", List.of(token));
         RequestEntity<Void> requestEntity = new RequestEntity<>(httpHeaders, HttpMethod.GET, URI.create(String.format(getDishPath, id)));
 
         DishDto dish = restTemplate.exchange(requestEntity, DishDto.class).getBody();

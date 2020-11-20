@@ -23,10 +23,10 @@ public class OrderBoardService {
     @Value("${app.order-board.path}${app.order-board.add}")
     private String orderBoardAddPath;
 
-    public void sendOrder(OrderBoardDto order) {
+    public void sendOrder(OrderBoardDto order, String token) {
         log.info("Заказ отправляется в ресторан:\n" + order);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.put("Authorization", List.of("eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyIiwiZXhwIjoxNjM0NTAwMDcwLCJpYXQiOjE2MDI5NjQwNzB9.1HLjqDbZz5VN6B268zQA5CVCQ0maYmyaWcY6YOMoMow"));
+        httpHeaders.put("Authorization", List.of(token));
         RequestEntity<OrderBoardDto> requestEntity = new RequestEntity<>(order, httpHeaders, HttpMethod.POST, URI.create(orderBoardAddPath));
         restTemplate.exchange(requestEntity, Void.class);
     }
